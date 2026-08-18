@@ -1,5 +1,5 @@
 <h1 align="center">CodeQuantum</h1>
-<p align="center"><b>Post-QuantuM Compatibility Scanner</b></p>
+<p align="center"><b>Post-Quantum Compatibility Scanner</b></p>
 <p align="center">
   Audite un hôte, une IP ou une liste de cibles et identifie <i>précisément</i> quels algorithmes,
   certificats et protocoles casseront avec l'arrivée d'un ordinateur quantique cryptographiquement pertinent —
