@@ -10,28 +10,28 @@
 
 ## Pourquoi cet outil existe
 
-La plupart des scanners TLS te disent "TLS 1.3" oui et s'arrêtent là. Aucun ne répond à la vraie question :
-**mon infra survit-elle à la transition post-quantique, et dans quel ordre dois-je agir ?**
+La plupart des scanners TLS te disent "TLS 1.3" oui et s'arrêtent là. Aucun ne répond à la vraie question
+**mon infra survit-elle à la transition post-quantique et dans quel ordre dois-je agir ?**
 
 `codequantum` sépare deux horloges très différentes :
 
 | Horloge | Signification | Urgence |
 |---|---|---|
 | **HNDL** (*Harvest Now, Decrypt Later*) | Le trafic enregistré **aujourd'hui** sera déchiffrable rétroactivement le jour où un ordinateur quantique existera. Échange de clés classique uniquement. | **Immédiate** — le compteur tourne déjà. |
-| **Q-DAY** | Signatures et identité (certificats). Ne casse **que** le jour où la machine existe. | Planifiable, sur le calendrier d'expiration des certificats. |
+| **Q-DAY** | Signatures et identité (certificats). Ne casse **que** le jour où la machine existe. | Planifiable sur le calendrier d'expiration des certificats. |
 
-Un troisième état existe aussi, et c'est important : **UNDETERMINED**. Si l'outil ne peut pas tester quelque chose
+Un troisième état existe aussi et c'est important **UNDETERMINED**. Si l'outil ne peut pas tester quelque chose
 (par exemple parce que l'OpenSSL local est trop ancien pour proposer les groupes hybrides ML-KEM), il le dit
-clairement — plutôt que d'afficher un faux "non supporté". Beaucoup d'outils confondent *"je n'ai pas pu tester"*
-et *"ce n'est pas supporté"* ; celui-ci ne le fait jamais.
+clairement plutôt que d'afficher un faux "non supporté". Beaucoup d'outils confondent *"je n'ai pas pu tester"*
+et *"ce n'est pas supporté"* celui-ci ne le fait jamais.
 
 ## Ce que le scanner vérifie
 
-- **Échange de clés post-quantique (TLS)** — support et préférence réelle de X25519MLKEM768 / SecP256r1MLKEM768
-- **Échange de clés post-quantique (SSH)** — sntrup761x25519, mlkem768x25519, et leur ordre de préférence
-- **Certificats** — algorithme de clé, algorithme de signature, dates d'expiration vs. les échéances NIST IR 8547
+- **Échange de clés post-quantique (TLS)** support et préférence réelle de X25519MLKEM768 / SecP256r1MLKEM768
+- **Échange de clés post-quantique (SSH)** sntrup761x25519, mlkem768x25519, et leur ordre de préférence
+- **Certificats** algorithme de clé, algorithme de signature, dates d'expiration vs. les échéances NIST IR 8547
   (dépréciation 2030, interdiction 2035), chaîne complète (leaf + intermédiaires)
-- **Protocoles obsolètes** — TLS 1.0/1.1, ciphers faibles (RC4, DES, 3DES...), signatures MD5/SHA-1
+- **Protocoles obsolètes** — TLS 1.0/1.1, ciphers faibles (RC4, DES, 3DES...) signatures MD5/SHA-1
 - **SSH** — host keys, MACs faibles, ordre de préférence des algorithmes
 
 ## Installation
@@ -42,11 +42,11 @@ cd codequantum
 pip install cryptography --break-system-packages
 ```
 
-Prérequis système : `openssl` en ligne de commande.
+Prérequis système `openssl` en ligne de commande.
 
 > **Pour tester réellement le support post-quantique** (pas juste UNDETERMINED), ton OpenSSL local doit pouvoir
 > offrir les groupes hybrides ML-KEM : OpenSSL ≥ 3.5, ou OpenSSL antérieur + [`oqs-provider`](https://github.com/open-quantum-safe/oqs-provider).
-> Sans ça, le scanner reste honnête et rapporte `UNDETERMINED` plutôt qu'un faux négatif.
+> Sans ça le scanner reste honnête et rapporte `UNDETERMINED` plutôt qu'un faux négatif.
 
 ## Utilisation
 
@@ -81,17 +81,17 @@ python3 codequantum.py --self-test
              -> Move the hybrid PQ group to the front of the server's group preference list.
 
   P3 - Q-DAY / SCHEDULABLE  (6)
-  Signatures and identity. Fails only when the machine exists;
+  Signatures and identity. Fails only when the machine exists
   plan against certificate expiry, do not panic.
 
     MEDIUM   example.com:443/tls/cert/leaf  Quantum-vulnerable certificate key: ECDSA-secp256r1-256
 ```
 
-## Le `--self-test`, ou pourquoi faire confiance au résultat
+## Le `--self-test` ou pourquoi faire confiance au résultat
 
 Un scanner qui ne peut jamais dire "non" n'a aucune valeur. `--self-test` vérifie que l'outil sait vraiment
 distinguer un hôte conforme d'un hôte qui ne l'est pas, via de vrais contrôles positifs et négatifs
-(ex. `github.com` refuse TLS 1.0, `badssl.com` le propose exprès) — et vérifie que le classificateur n'invente
+(ex. `github.com` refuse TLS 1.0, `badssl.com` le propose exprès) et vérifie que le classificateur n'invente
 jamais un verdict post-quantique quand il ne peut pas réellement tester.
 
 ## Confidentialité
