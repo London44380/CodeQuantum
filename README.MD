@@ -17,7 +17,7 @@ La plupart des scanners TLS te disent "TLS 1.3" oui et s'arrêtent là. Aucun ne
 
 | Horloge | Signification | Urgence |
 |---|---|---|
-| **HNDL** (*Harvest Now, Decrypt Later*) | Le trafic enregistré **aujourd'hui** sera déchiffrable rétroactivement le jour où un ordinateur quantique existera. Échange de clés classique uniquement. | **Immédiate** — le compteur tourne déjà. |
+| **HNDL** (*Harvest Now, Decrypt Later*) | Le trafic enregistré **aujourd'hui** sera déchiffrable rétroactivement le jour où un ordinateur quantique existera. Échange de clés classique uniquement. | **Immédiate** le compteur tourne déjà. |
 | **Q-DAY** | Signatures et identité (certificats). Ne casse **que** le jour où la machine existe. | Planifiable sur le calendrier d'expiration des certificats. |
 
 Un troisième état existe aussi et c'est important **UNDETERMINED**. Si l'outil ne peut pas tester quelque chose
@@ -106,7 +106,7 @@ que tu génères toi-même en local.
 | Échéance | Action |
 |---|---|
 | **Maintenant** | Activer l'échange de clés hybride PQ partout (rétrocompatible, sans risque à déployer) |
-| **2026–2028** | Inventorier tous les certificats et leur durée de vie ; raccourcir les durées de vie |
+| **2026–2028** | Inventorier tous les certificats et leur durée de vie raccourcir les durées de vie |
 | **D'ici 2030** | RSA / ECDSA / ECDH **dépréciés** |
 | **D'ici 2035** | RSA / ECDSA / ECDH **interdits**, y compris systèmes legacy (les modes hybrides survivent) |
 
