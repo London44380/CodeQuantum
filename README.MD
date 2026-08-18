@@ -2,7 +2,7 @@
 <p align="center"><b>Post-Quantum Compatibility Scanner</b></p>
 <p align="center">
   Audite un hôte, une IP ou une liste de cibles et identifie <i>précisément</i> quels algorithmes,
-  certificats et protocoles casseront avec l'arrivée d'un ordinateur quantique cryptographiquement pertinent —
+  certificats et protocoles casseront avec l'arrivée d'un ordinateur quantique cryptographiquement pertinent
   avec une timeline de migration priorisée et actionnable.
 </p>
 
@@ -10,7 +10,7 @@
 
 ## Pourquoi cet outil existe
 
-La plupart des scanners TLS te disent "TLS 1.3 : oui" et s'arrêtent là. Aucun ne répond à la vraie question :
+La plupart des scanners TLS te disent "TLS 1.3" oui et s'arrêtent là. Aucun ne répond à la vraie question :
 **mon infra survit-elle à la transition post-quantique, et dans quel ordre dois-je agir ?**
 
 `codequantum` sépare deux horloges très différentes :
