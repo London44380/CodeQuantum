@@ -6,6 +6,10 @@
   avec une timeline de migration priorisée et actionnable.
 </p>
 
+<p align="center"><i>Post-quantum compatibility scanner: audits a host, IP or list of targets and pinpoints exactly which algorithms, certificates and protocols will break once a cryptographically relevant quantum computer exists, with a prioritized, actionable migration timeline.</i></p>
+
+![demo](docs/demo.gif)
+
 ---
 
 ## Pourquoi cet outil existe
